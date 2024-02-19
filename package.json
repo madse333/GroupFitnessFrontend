@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "jsonwebtoken": "^8.5.1",
+    "safe-buffer": "^5.2.1"
+  }
+}
