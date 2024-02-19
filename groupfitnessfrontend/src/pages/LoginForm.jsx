@@ -1,7 +1,7 @@
 // LoginForm.js
 import { useState } from 'react';
-import { login } from './AuthService';
-import "./css/LoginForm.css";
+import { login } from '../AuthService';
+import "../css/LoginForm.css";
 
 // eslint-disable-next-line react/prop-types
 const LoginForm = ({ onLogin }) => {

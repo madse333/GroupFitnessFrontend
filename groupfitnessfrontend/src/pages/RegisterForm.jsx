@@ -1,6 +1,6 @@
 //RegisterForm.jsx
 import { useState } from 'react';
-import { register } from './AuthService';
+import { register } from '../AuthService';
 
 // eslint-disable-next-line react/prop-types
 const RegisterForm = ({ onRegister }) => {
