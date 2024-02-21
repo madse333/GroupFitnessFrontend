@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import Navbar from '../components/NavigationBar';
+import LoggedInNavBar from '../components/LoggedInNavigationBar';
+import '../css/Home.css'
 
 const Home = () => {
     const [user, setUser] = useState(null);
@@ -6,6 +9,7 @@ const Home = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+
         const fetchUser = async () => {
             try {
                 const response = await fetch('https://groupfitnessprod.azurewebsites.net/user/getuser/getuser', {
@@ -39,23 +43,25 @@ const Home = () => {
     }
 
     if (error) {
-        return <p>Error: {error}</p>;
+        return (
+            <>
+                <Navbar />
+                <div className="Home-container">
+                    <h1>Home Page</h1>
+                </div>
+            </>
+        )
     }
 
     return (
-        <div>
-            <h1>Home Page</h1>
-            <p>Welcome to the home page. You are currently logged in.</p>
-            <p>Account details:</p>
-            {user && (
-                <ul>
-                    <li>Username: {user.username}</li>
-                    <li>Email: {user.email}</li>
-                    <li>Name: {user.name}</li>
-                </ul>
-            )}
-        </div>
+        <>
+            <LoggedInNavBar />
+            <div className="Home-container">
+                <h1>Home Page</h1>
+            </div>
+        </>
     );
 };
 
 export default Home;
+
