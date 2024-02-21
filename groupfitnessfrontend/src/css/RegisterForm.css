@@ -1,0 +1,333 @@
+body {
+    background-color: #191718;
+    overflow: hidden;
+}
+
+.container {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    height: 1000px;
+    align-items: center;
+}
+
+.rectangle-1 {
+    background: rgba(255, 255, 255, 0);
+    border-radius: 15px;
+    border-style: solid;
+    border-color: #ffffff;
+    border-width: 1px;
+    width: 352px;
+    height: 45px;
+    position: relative;
+}
+
+.user {
+    width: 37px;
+    height: 37px;
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    overflow: visible;
+}
+
+.lock {
+    height: auto;
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    overflow: visible;
+}
+
+div {
+    margin: 0px 0px 0px 0px;
+}
+
+.bg-effects {
+    display: none;
+}
+
+
+
+.register-col {
+    display: flex;
+    justify-content: center;
+}
+
+.register-title {
+    color: #ffffff;
+    text-align: center;
+    font-family: "PtSans-Bold", sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    position: relative;
+    width: auto;
+}
+
+.register-describtion-col {
+    display: flex;
+    justify-content: center;
+}
+
+.please-enter-your-information {
+    color: #ffffff;
+    text-align: center;
+    font-family: "PtSans-Bold", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    position: relative;
+    width: auto;
+}
+
+
+
+.firstname-col {
+    display: flex;
+    justify-content: center;
+}
+
+.firstname {
+    margin-top: 25px;
+    height: 45px;
+    position: relative;
+}
+
+.firstname-information {
+    color: #a5a5a5;
+    text-align: left;
+    font-family: "PtSans-Bold", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    position: absolute;
+    left: 55px;
+    top: 15px;
+    width: 270px;
+    height: 20px;
+    background: none;
+    border: none;
+}
+
+input.firstname-information:focus {
+    outline: none;
+    border: none; /* Optionally, remove the border */
+}
+
+
+
+.lastname-col {
+    display: flex;
+    justify-content: center;
+}
+
+.lastname {
+    margin-top: 25px;
+    margin-bottom: 40px;
+    height: 45px;
+    position: relative;
+}
+
+.lastname-information {
+    color: #a5a5a5;
+    text-align: left;
+    font-family: "PtSans-Bold", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    position: absolute;
+    left: 55px;
+    top: 15px;
+    width: 270px;
+    height: 20px;
+    background: none;
+    border: none;
+}
+
+input.lastname-information:focus {
+    outline: none;
+    border: none; /* Optionally, remove the border */
+}
+
+
+
+.username-col {
+    display: flex;
+    justify-content: center;
+}
+
+.username {
+    margin-top: 35px;
+    height: 45px;
+    position: relative;
+}
+
+.username-information {
+    color: #a5a5a5;
+    text-align: left;
+    font-family: "PtSans-Bold", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    position: absolute;
+    left: 55px;
+    top: 15px;
+    width: 270px;
+    height: 20px;
+    background: none;
+    border: none;
+}
+
+input.username-information:focus {
+    outline: none;
+    border: none; /* Optionally, remove the border */
+}
+
+
+
+.email-col {
+    display: flex;
+    justify-content: center;
+}
+
+.email {
+    margin-top: 25px;
+    margin-bottom: 40px;
+    height: 45px;
+    position: relative;
+}
+
+.email-information {
+    color: #a5a5a5;
+    text-align: left;
+    font-family: "PtSans-Bold", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    position: absolute;
+    left: 55px;
+    top: 15px;
+    width: 270px;
+    height: 20px;
+    background: none;
+    border: none;
+}
+
+input.email-information:focus {
+    outline: none;
+    border: none; /* Optionally, remove the border */
+}
+
+
+
+.password-col {
+    display: flex;
+    justify-content: center;
+}
+
+.password {
+    margin-top: 25px;
+    margin-bottom: 40px;
+    height: 45px;
+    position: relative;
+}
+
+.password-information {
+    color: #a5a5a5;
+    text-align: left;
+    font-family: "PtSans-Bold", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    position: absolute;
+    left: 55px;
+    top: 15px;
+    width: 270px;
+    height: 20px;
+    background: none;
+    border: none;
+}
+
+input.password-information:focus {
+    outline: none;
+    border: none; /* Optionally, remove the border */
+}
+
+
+
+.register-button-col {
+    display: flex;
+    justify-content: center;
+}
+
+.register-button {
+    height: 45px;
+    position: relative;
+    border: none;
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-rectangle {
+    background: rgba(255, 255, 255, 0);
+    border-radius: 15px;
+    border-style: solid;
+    border-color: #36981d;
+    border-width: 2px;
+    display: flex;
+    justify-content: center;
+}
+
+.rectangle-2 {
+    width: 352px;
+    height: 45px;
+    position: relative;
+}
+
+.register {
+    color: #36981d;
+    text-align: center;
+    font-family: "PtSans-Bold", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    position: absolute;
+    width: auto;
+    top: 13px;
+}
+
+
+
+@media only screen and (min-width: 768px) {
+
+    .bg-effects {
+        display: block;
+    }
+
+    .corner-vector {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+
+
+    .ellipse {
+        background: #e0e5e9;
+        border-radius: 50%;
+        position: absolute;
+    }
+
+    .ellipse-topleft {
+        height: 775.13px;
+        width: 775.13px;
+        top: -387.565px;
+        left: -387.565px;
+    }
+
+    .ellipse-bottomleft {
+        height: 470px;
+        width: 470px;
+        bottom: -235px;
+        left: -235px;
+    }
+
+    .register-rectangle:hover {
+        background-color: #aed5a4;
+        cursor: pointer;
+    }
+}
