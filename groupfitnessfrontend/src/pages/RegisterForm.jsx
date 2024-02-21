@@ -1,7 +1,7 @@
 //RegisterForm.jsx
 import { useState } from 'react';
 import { register } from '../AuthService';
-import "../css/RegisterForm.css";
+import "../css/RegisterForm.scss";
 // eslint-disable-next-line react/prop-types
 const RegisterForm = ({ onRegister }) => {
     const [firstName, setFirstName] = useState('');
@@ -20,7 +20,7 @@ const RegisterForm = ({ onRegister }) => {
     };
 
     return (
-        <div>
+        <div className="register-page">
             <div className="bg-effects">
                 <svg
                     className="corner-vector"

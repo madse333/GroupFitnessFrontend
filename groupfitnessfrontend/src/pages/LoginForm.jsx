@@ -1,7 +1,7 @@
 // LoginForm.js
 import { useState } from 'react';
 import { login } from '../AuthService';
-import "../css/LoginForm.css";
+import "../css/LoginForm.scss";
 
 // eslint-disable-next-line react/prop-types
 const LoginForm = ({ onLogin }) => {
@@ -18,7 +18,7 @@ const LoginForm = ({ onLogin }) => {
     };
 
     return (
-        <div>
+        <div className="login-page">
             <div className="bg-effects">
                 <svg
                     className="corner-vector"
