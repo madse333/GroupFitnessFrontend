@@ -42,3 +42,12 @@ export const register = async (firstName, lastName, username, email, password) =
     }
 };
 
+export const signOut = () => {
+    try {
+        localStorage.removeItem('token');
+        window.location.href = '/';
+    } catch (error) {
+        console.error('Error signing out:', error);
+        throw error;
+    }
+};

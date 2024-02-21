@@ -1,0 +1,15 @@
+body {
+    margin: 0; 
+    padding: 0;
+}
+
+.Home-container {
+    width: 100%;
+    padding: 70px 10px;
+}
+
+h1 {
+    color: White;
+    font-family: "PtSans-Bold", sans-serif;
+    font-weight: 700;
+}

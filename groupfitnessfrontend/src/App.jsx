@@ -4,6 +4,7 @@ import LoginForm from './pages/LoginForm';
 import ProtectedPage from './pages/ProtectedPage';
 import RegisterForm from './pages/RegisterForm';
 import Home from './pages/Home';
+import Signout from './pages/Signout';
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,6 +28,7 @@ const App = () => {
     }
 
     return (
+        <>
         <Router>
             <Switch>
                 <Route path="/register">
@@ -38,11 +40,15 @@ const App = () => {
                 <Route exact path="/protected">
                     {isLoggedIn ? <ProtectedPage onLogout={handleLogout} /> : <Redirect to="/login" />}
                 </Route>
-                <Route path="/">
-                    {isLoggedIn ? <Home /> : <Redirect to="/login" />}
+                <Route exact path="/SignOut">
+                    <Signout />
+                </Route>
+                <Route exact path="/">
+                    <Home />
                 </Route>
             </Switch>
-        </Router>
+            </Router>
+        </>
     );
 };
 
