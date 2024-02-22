@@ -7,6 +7,7 @@ const Home = () => {
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [userImages, setUserImages] = useState([]);
 
     useEffect(() => {
 
@@ -24,6 +25,20 @@ const Home = () => {
 
                 const userData = await response.json();
                 setUser(userData);
+
+                const imagesResponse = await fetch('https://groupfitnessprod.azurewebsites.net/user/getuserimages/getuserimages', {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+
+                if (!imagesResponse.ok) {
+                    throw new Error('Failed to fetch user images');
+                }
+
+                const userImageData = await imagesResponse.json();
+                setUserImages(userImageData);
+
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -57,7 +72,12 @@ const Home = () => {
         <>
             <LoggedInNavBar />
             <div className="Home-container">
-                <h1>Home Page</h1>
+                <h1>Welcome, {user?.name}</h1>
+                <div className="image-container">
+                    {userImages.map((image, index) => (
+                        <img key={index} src={`data:image/jpeg;base64,${image}`} alt="User Image" />
+                    ))}
+                </div>
             </div>
         </>
     );
