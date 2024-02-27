@@ -18,10 +18,24 @@ const NavigationBar = () => {
     return (
         <div className="navigation-bar">
             <nav className="group-fitness">GroupFitness</nav>
+            
+            <div className="menu-items">
+                <Link to="/groups" className="menu-item">
+                    Groups
+                </Link>
 
-            <div className="dropdown-container" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <FontAwesomeIcon icon={faCircleUser} className='faCircleUserDropDown' />
-                {showDropdown && (<div className="dropdown-content"> <Link to="/signout">Sign Out</Link> </div>)}
+                <Link to="/" className="menu-item">
+                    Home
+                </Link>
+
+                <div className="dropdown-container" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                    <FontAwesomeIcon icon={faCircleUser} className="faCircleUserDropDown" />
+                    {showDropdown && (
+                        <div className="dropdown-content">
+                            <Link to="/signout">Sign Out</Link>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

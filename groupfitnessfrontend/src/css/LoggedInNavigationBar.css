@@ -13,6 +13,19 @@
     background-color: #191718;
 }
 
+.menu-items{
+    display:flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.menu-item {
+    text-decoration: none;
+    color: #E0E5E9;
+    font-family: "PtSans-Bold", sans-serif;
+    font-weight: 700;
+}
+
 .group-fitness {
     display: flex;
     align-items: center;

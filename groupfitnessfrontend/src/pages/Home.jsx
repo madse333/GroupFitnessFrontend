@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Navbar from '../components/NavigationBar';
 import LoggedInNavBar from '../components/LoggedInNavigationBar';
 import FileUpload from '../components/UploadImage';
-import '../css/Home.css'
+import '../css/Home.scss'
 
 const Home = () => {
     const [user, setUser] = useState(null);
@@ -104,6 +104,7 @@ const Home = () => {
             <LoggedInNavBar />
             <div className="Home-container">
                 <h1>Welcome, {user?.name}</h1>
+
                 <div className="image-container">
                     {userImages.map((image, index) => (
                         <img key={index} src={`data:image/jpeg;base64,${image}`} alt="User Image" />

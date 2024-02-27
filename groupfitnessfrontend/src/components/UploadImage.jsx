@@ -10,7 +10,10 @@ const ImageUpload = ({ onUpload }) => {
     const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
     const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+        // setCroppedAreaPixels is used to store the cropped area for upload
         setCroppedAreaPixels(croppedAreaPixels);
+        // croppedArea is used to update the crop state for display
+        setCrop(croppedArea);
     }, []);
 
     const handleFileChange = (event) => {
@@ -32,34 +35,20 @@ const ImageUpload = ({ onUpload }) => {
 
         const img = new Image();
         img.onload = () => {
-            const naturalWidth = img.naturalWidth;
-            const naturalHeight = img.naturalHeight;
-
-            // Calculate aspect ratio of original image
-            const aspectRatio = naturalWidth / naturalHeight;
-
-            // Calculate crop area based on the original image size and desired square size
-            let cropAreaWidth = naturalWidth;
-            let cropAreaHeight = naturalHeight;
-
-            if (naturalWidth > naturalHeight) {
-                cropAreaWidth = naturalHeight * aspectRatio;
-            } else {
-                cropAreaHeight = naturalWidth / aspectRatio;
-            }
-
-            // Calculate the crop area's top-left coordinates to center the image
-            const cropX = (naturalWidth - cropAreaWidth) / 2;
-            const cropY = (naturalHeight - cropAreaHeight) / 2;
-
             canvas.width = squareSize;
             canvas.height = squareSize;
 
-            // Draw the cropped image onto the canvas
+            // Draw the cropped area of the image onto the canvas
             ctx.drawImage(
                 img,
-                cropX, cropY, cropAreaWidth, cropAreaHeight, // Source crop area
-                0, 0, squareSize, squareSize // Destination square area
+                croppedAreaPixels.x,
+                croppedAreaPixels.y,
+                croppedAreaPixels.width,
+                croppedAreaPixels.height,
+                0,
+                0,
+                squareSize,
+                squareSize
             );
 
             canvas.toBlob(async (blob) => {
@@ -70,6 +59,7 @@ const ImageUpload = ({ onUpload }) => {
                     await onUpload(formData);
                     setImage(null); // Clear the image after successful upload
                     setCroppedAreaPixels(null); // Clear the cropped area
+                    window.location.reload();
                 } catch (error) {
                     console.error(error);
                     alert('Error uploading file.');

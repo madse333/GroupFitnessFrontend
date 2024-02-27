@@ -5,6 +5,7 @@ import ProtectedPage from './pages/ProtectedPage';
 import RegisterForm from './pages/RegisterForm';
 import Home from './pages/Home';
 import Signout from './pages/Signout';
+import Groups from './pages/Groups';
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -45,6 +46,9 @@ const App = () => {
                 </Route>
                 <Route exact path="/">
                     <Home />
+                </Route>
+                <Route exact path="/groups">
+                    <Groups />
                 </Route>
             </Switch>
             </Router>
