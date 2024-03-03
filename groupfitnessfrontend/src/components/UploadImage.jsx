@@ -29,14 +29,17 @@ const ImageUpload = ({ onUpload }) => {
             return;
         }
 
-        const squareSize = 300; // Desired square size
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
 
         const img = new Image();
         img.onload = () => {
-            canvas.width = squareSize;
-            canvas.height = squareSize;
+            // Use the desired dimensions for the cropped image
+            const cropWidth = 921;
+            const cropHeight = 2048;
+
+            canvas.width = cropWidth;
+            canvas.height = cropHeight;
 
             // Draw the cropped area of the image onto the canvas
             ctx.drawImage(
@@ -47,8 +50,8 @@ const ImageUpload = ({ onUpload }) => {
                 croppedAreaPixels.height,
                 0,
                 0,
-                squareSize,
-                squareSize
+                cropWidth,
+                cropHeight
             );
 
             canvas.toBlob(async (blob) => {
@@ -59,7 +62,6 @@ const ImageUpload = ({ onUpload }) => {
                     await onUpload(formData);
                     setImage(null); // Clear the image after successful upload
                     setCroppedAreaPixels(null); // Clear the cropped area
-                    window.location.reload();
                 } catch (error) {
                     console.error(error);
                     alert('Error uploading file.');
@@ -81,7 +83,7 @@ const ImageUpload = ({ onUpload }) => {
                         image={image}
                         crop={crop}
                         zoom={zoom}
-                        aspect={1} // Aspect ratio 1:1 for a square crop
+                        aspect={921 / 2048} // Aspect ratio 921:2048 for the desired dimensions
                         onCropChange={setCrop}
                         onZoomChange={setZoom}
                         onCropComplete={onCropComplete}
@@ -90,7 +92,15 @@ const ImageUpload = ({ onUpload }) => {
                 )}
             </label>
             <input type="file" id="fileInput" onChange={handleFileChange} accept="image/*" style={{ display: 'none' }} />
-            <button onClick={handleUpload}>Upload</button>
+            <button onClick={handleUpload}>
+                <svg className="upload-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <title>Artboard-153</title>
+                    <g id="Upload">
+                        <path d="M9.707,7.707,11,6.414V16a1,1,0,0,0,2,0V6.414l1.293,1.293a1,1,0,0,0,1.414-1.414l-3-3a1,1,0,0,0-1.416,0l-3,3A1,1,0,0,0,9.707,7.707Z" style={{ fill: "#ff8e31" }} />
+                        <path d="M17,19H7a1,1,0,0,0,0,2H17a1,1,0,0,0,0-2Z" style={{ fill: "#ece4b7" }} />
+                    </g>
+                </svg>
+            </button>
         </div>
     );
 };

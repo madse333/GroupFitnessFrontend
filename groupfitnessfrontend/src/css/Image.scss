@@ -1,0 +1,17 @@
+.image-with-cross{
+    display:flex;
+    position: relative;
+    justify-content: center;
+    
+    .image{
+        
+    }
+
+    .delete-button{
+        position: absolute;
+        bottom: -20px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+}

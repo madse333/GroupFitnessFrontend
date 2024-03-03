@@ -36,6 +36,9 @@ const LoginForm = ({ onLogin }) => {
             </div>
             <div className="container text-center">
                 <div className="row">
+                    <div className="col-12 col-sm3">
+                        <img src="/public/GroupFitnessLogo.png" alt="LogoImage" />
+                    </div>
                     <div className="col-12 col-sm-3 login-col">
                         <div className="login-title">Login</div>
                     </div>

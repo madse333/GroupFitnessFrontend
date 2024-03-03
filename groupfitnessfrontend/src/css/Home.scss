@@ -7,14 +7,31 @@ body {
     width: 100%;
     padding: 70px 10px;
     background-color: #E0E5E9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
     
     h1 {
     color: #191718;
     font-family: "PtSans-Bold", sans-serif;
     font-weight: 700;
+
     }
 
     img {
         width: 200px;
+    }
+
+    .image-container{
+        display:flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .fileupload{
+        margin-top: 20px;
     }
 }
