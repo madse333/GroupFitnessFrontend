@@ -32,7 +32,7 @@ const App = () => {
         <>
         <Router>
             <Switch>
-                <Route path="/register">
+                <Route exact path="/register">
                     {isLoggedIn ? <Home /> : <RegisterForm onRegister={handleRegister} /> }
                 </Route>
                 <Route exact path="/login">
@@ -42,13 +42,13 @@ const App = () => {
                     {isLoggedIn ? <ProtectedPage onLogout={handleLogout} /> : <Redirect to="/login" />}
                 </Route>
                 <Route exact path="/SignOut">
-                    <Signout />
+                    {isLoggedIn ? <Redirect to="/login" /> : <Signout />}
                 </Route>
                 <Route exact path="/">
-                    <Home />
+                    {isLoggedIn ? <Home /> : <Redirect to="/login" />}
                 </Route>
                 <Route exact path="/groups">
-                    <Groups />
+                    {isLoggedIn ? <Groups /> : <Redirect to="/login" />}
                 </Route>
             </Switch>
             </Router>
