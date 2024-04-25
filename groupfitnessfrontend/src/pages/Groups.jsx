@@ -2,6 +2,7 @@ import { useState } from 'react';
 import LoggedInNavBar from '../components/LoggedInNavigationBar';
 import Modal from 'react-modal';
 import GroupForm from '../components/modals/GroupForm';
+import Group from '../components/Group';
 
 const Groups = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,19 +25,35 @@ const Groups = () => {
         <>
             <LoggedInNavBar />
             <div className="Home-container">
-                <h1>Assigned groups</h1>
-
-
-                {/* Button to open the modal */}
-                <button onClick={openModal}>Create Group</button>
-
-                {/* Modal for creating a new group */}
-                <GroupForm
-                    isOpen={isModalOpen}
-                    onClose={closeModal}
-                    onCreate={handleCreateGroup}
-                />
+                <div className="row">
+                    <div className="col-12 col-sm-12">
+                        <h1>Assigned groups</h1>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12 col-sm-12">
+                        <button onClick={openModal}>Create Group</button>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12 col-sm-12">
+                        <GroupForm
+                            isOpen={isModalOpen}
+                            onClose={closeModal}
+                            onCreate={handleCreateGroup}
+                        />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12 col-sm-12">
+                        <Group />
+                        <Group />
+                        <Group />
+                    </div>
+                </div>
             </div>
+
+
         </>
     );
 };
