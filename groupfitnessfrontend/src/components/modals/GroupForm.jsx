@@ -3,25 +3,22 @@ import Modal from 'react-modal';
 
 const GroupForm = ({ isOpen, onClose, onCreate }) => {
     const [groupName, setGroupName] = useState('');
-    const [groupDescription, setGroupDescription] = useState('');
 
     const handleCreateGroup = () => {
         // Perform validation if needed
-        if (!groupName.trim() || !groupDescription.trim()) {
+        if (!groupName.trim()) {
             alert('Please enter group name and description.');
             return;
         }
 
         // Call the onCreate function with the new group data
         onCreate({
-            name: groupName,
-            description: groupDescription,
+            groupName: groupName,
         });
 
         // Close the modal and reset form fields
         onClose();
         setGroupName('');
-        setGroupDescription('');
     };
 
     return (
@@ -38,13 +35,6 @@ const GroupForm = ({ isOpen, onClose, onCreate }) => {
                     value={groupName}
                     onChange={(e) => setGroupName(e.target.value)}
                 />
-            </div>
-            <div>
-                <label>Group Description:</label>
-                <textarea
-                    value={groupDescription}
-                    onChange={(e) => setGroupDescription(e.target.value)}
-                ></textarea>
             </div>
             <div>
                 <button onClick={handleCreateGroup}>Create Group</button>

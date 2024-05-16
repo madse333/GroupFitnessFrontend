@@ -10,6 +10,7 @@ const LoginForm = ({ onLogin }) => {
 
     const handleLogin = async () => {
         try {
+            event.preventDefault();
             const token = await login(username, password);
             onLogin(token);
         } catch (error) {
@@ -48,42 +49,43 @@ const LoginForm = ({ onLogin }) => {
                             Please enter your Login and your Password
                         </div>
                     </div>
-
-                    <div className="col-12 col-sm-3 username-col">
-                        <div className="email">
-                            <div className="rectangle-1"></div>
-                            <input
-                                type="text"
-                                className="username-or-email"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
-                                placeholder="Username or Email"
-                            />
-                            <svg className="user" width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30.833 32.375v-3.083a6.167 6.167 0 0 0-6.166-6.167H12.333a6.166 6.166 0 0 0-6.166 6.167v3.083M18.5 16.958a6.167 6.167 0 1 0 0-12.333 6.167 6.167 0 0 0 0 12.333" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                        </div>
-                    </div>
-
-                    <div className="col-12 col-sm-3 password-col">
-                        <div className="password">
-                            <div className="rectangle-1"></div>
-                            <input
-                                type="password"
-                                className="password2"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder="Password"
-                            />
-                            <svg className= "lock" width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M29.292 16.958H7.708a3.083 3.083 0 0 0-3.083 3.084v10.791a3.083 3.083 0 0 0 3.083 3.084h21.584a3.083 3.083 0 0 0 3.083-3.084V20.042a3.083 3.083 0 0 0-3.083-3.084m-18.5 0v-6.166a7.708 7.708 0 1 1 15.416 0v6.166" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                        </div>
-                    </div>
-                    <div className="col-12 col-sm-3 login-button-col">
-                        <button onClick={handleLogin} className="login-button">
-                            <div className="login-rectangle">
-                                <div className="rectangle-2"></div>
-                                <div className="login">Login</div>
+                    <form onSubmit={handleLogin}>
+                        <div className="col-12 col-sm-3 username-col">
+                            <div className="email">
+                                <div className="rectangle-1"></div>
+                                <input
+                                    type="text"
+                                    className="username-or-email"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    placeholder="Username or Email"
+                                />
+                                <svg className="user" width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30.833 32.375v-3.083a6.167 6.167 0 0 0-6.166-6.167H12.333a6.166 6.166 0 0 0-6.166 6.167v3.083M18.5 16.958a6.167 6.167 0 1 0 0-12.333 6.167 6.167 0 0 0 0 12.333" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" /></svg>
                             </div>
-                        </button>
-                    </div>
+                        </div>
+
+                        <div className="col-12 col-sm-3 password-col">
+                            <div className="password">
+                                <div className="rectangle-1"></div>
+                                <input
+                                    type="password"
+                                    className="password2"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    placeholder="Password"
+                                />
+                                <svg className= "lock" width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M29.292 16.958H7.708a3.083 3.083 0 0 0-3.083 3.084v10.791a3.083 3.083 0 0 0 3.083 3.084h21.584a3.083 3.083 0 0 0 3.083-3.084V20.042a3.083 3.083 0 0 0-3.083-3.084m-18.5 0v-6.166a7.708 7.708 0 1 1 15.416 0v6.166" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                            </div>
+                        </div>
+                        <div className="col-12 col-sm-3 login-button-col">
+                            <button type="submit" className="login-button">
+                                <div className="login-rectangle">
+                                    <div className="rectangle-2"></div>
+                                    <div className="login">Login</div>
+                                </div>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
