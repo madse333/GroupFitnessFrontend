@@ -8,7 +8,7 @@ const Signout = () => {
     useEffect(() => {
         signOut();
 
-        history.push('/');
+        history.push('/login');
     }, [history]);
 
     return (

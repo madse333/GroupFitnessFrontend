@@ -8,17 +8,14 @@ import Signout from './pages/Signout';
 import Groups from './pages/Groups';
 
 const App = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    console.log(isLoggedIn);
+    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
 
     const handleLogin = (token) => {
-        // Save token in local storage
         localStorage.setItem('token', token);
         setIsLoggedIn(true);
     };
 
     const handleLogout = () => {
-        // Remove token from local storage
         localStorage.removeItem('token');
         setIsLoggedIn(false);
     };
@@ -42,10 +39,10 @@ const App = () => {
                     {isLoggedIn ? <ProtectedPage onLogout={handleLogout} /> : <Redirect to="/login" />}
                 </Route>
                 <Route exact path="/SignOut">
-                    {isLoggedIn ? <Redirect to="/login" /> : <Signout />}
+                    {isLoggedIn ? <Signout onLogout={handleLogout} /> : <Redirect to="/login" />}
                 </Route>
                 <Route exact path="/">
-                    {isLoggedIn ? <Home /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <Home onLogout={handleLogout} /> : <Redirect to="/login" />}
                 </Route>
                 <Route exact path="/groups">
                     {isLoggedIn ? <Groups /> : <Redirect to="/login" />}

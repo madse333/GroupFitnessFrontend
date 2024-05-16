@@ -3,45 +3,49 @@ import Navbar from '../components/NavigationBar';
 import LoggedInNavBar from '../components/LoggedInNavigationBar';
 import GroupForm from '../components/modals/GroupForm';
 import Group from '../components/Group';
-import { getGroups } from '../GroupService';
 import "../css/Group.scss";
+import "../css/Spinner.scss";
 
 const Groups = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [error, setError] = useState(null);
     const [userGroupList, setUserGroupList] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+
+    const fetchGroups = async () => {
+        try {
+            const response = await fetch('https://groupfitnessprod.azurewebsites.net/group/getgroups', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch user details');
+            }
+
+            const groupList = await response.json();
+            console.log('Fetched groups:', groupList);
+
+            if (Array.isArray(groupList)) {
+                setUserGroupList(groupList);
+                setIsLoading(false);
+            } else {
+                setUserGroupList([]);
+                setIsLoading(false);
+            }
+
+        } catch (error) {
+            setError(error.message);
+            setUserGroupList([]);
+            setIsLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchGroups = async () => {
-            try {
-                const response = await fetch('https://groupfitnessprod.azurewebsites.net/group/getgroups', {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error('Failed to fetch user details');
-                }
-
-                const groupList = await response.json();
-
-                if (Array.isArray(groupList)) {
-                    setUserGroupList(groupList);
-                    console.log(groupList);
-                } else {
-                    setUserGroupList([]);
-                }
-
-            } catch (error) {
-                setError(error.message);
-                setUserGroupList([]);
-            }
-        };
-
         fetchGroups();
     }, []);
-
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -51,18 +55,7 @@ const Groups = () => {
         setIsModalOpen(false);
     };
 
-    async () => {
-        try {
-            const token = await getGroups();
-
-            console.log(token);
-        } catch (error) {
-            // Handle fetching error
-        }
-    }
-
     const handleCreateGroup = async (newGroup) => {
-        // Handle the creation of the new group, you can make API call here
         console.log('Creating group:', newGroup);
         try {
             const response = await fetch('https://groupfitnessprod.azurewebsites.net/group/creategroup', {
@@ -79,13 +72,19 @@ const Groups = () => {
             }
 
             const data = await response.json();
-            setUserGroupList(prevUserGroupList => [...prevUserGroupList, data]);
+            console.log('Created group:', data);
+
+            // Call fetchGroups to refresh the group list
+            fetchGroups();
         } catch (error) {
-            console.error('Error registering user:', error);
+            console.error('Error creating group:', error);
             throw error;
         }
-
     };
+
+    useEffect(() => {
+        console.log('Updated userGroupList:', userGroupList);
+    }, [userGroupList]);
 
     if (error) {
         return (
@@ -118,21 +117,25 @@ const Groups = () => {
                         />
                     </div>
                     <div className="groups">
-                        {userGroupList.length > 0 ? (
+                        {isLoading && (
+                            <div className="spinner-container">
+                                <div className="spinner"></div>
+                                <p>Loading...</p>
+                            </div>
+                        )}
+                        {!isLoading && userGroupList.length > 0 ? (
                             userGroupList.map((group, index) => (
                                 <Group
                                     key={index} // Using index as the key
                                     groupName={group.groupName}
                                 />
                             ))
-                        ) : (
-                            <p>No groups found for this user.</p>
+                        ) : !isLoading && (
+                                <p>No groups found for this user.</p>
                         )}
                     </div>
                 </div>
             </div>
-
-
         </>
     );
 };
