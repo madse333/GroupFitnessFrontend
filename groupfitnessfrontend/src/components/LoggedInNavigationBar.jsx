@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
-import "../css/LoggedInNavigationBar.css"
+import "../css/LoggedInNavigationBar.css";
 
-const NavigationBar = () => {
+// eslint-disable-next-line react/prop-types
+const NavigationBar = ({ handleLogout }) => {
     const [showDropdown, setShowDropdown] = useState(false);
 
     const handleMouseEnter = () => {
@@ -18,7 +19,7 @@ const NavigationBar = () => {
     return (
         <div className="navigation-bar">
             <nav className="group-fitness">GroupFitness</nav>
-            
+
             <div className="menu-items">
                 <Link to="/groups" className="menu-item">
                     Groups

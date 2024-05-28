@@ -1,15 +1,13 @@
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { signOut } from '../AuthService';
 
-const Signout = () => {
+const Signout = ({ handleLogout }) => {
     const history = useHistory();
 
     useEffect(() => {
-        signOut();
-
+        handleLogout();
         history.push('/login');
-    }, [history]);
+    }, [handleLogout, history]);
 
     return (
         <div>
