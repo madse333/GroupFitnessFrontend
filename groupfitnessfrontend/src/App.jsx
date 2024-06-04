@@ -9,7 +9,7 @@ import Groups from './pages/Groups';
 import NavigationBar from './components/NavigationBar';
 
 const App = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+    const [isLoggedIn, setIsLoggedIn] = useState(!localStorage.getItem('token'));
 
     const handleLogin = (token) => {
         localStorage.setItem('token', token);

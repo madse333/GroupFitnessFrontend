@@ -29,7 +29,11 @@ const Groups = () => {
             console.log('Fetched groups:', groupList);
 
             if (Array.isArray(groupList)) {
-                setUserGroupList(groupList);
+                const groupsWithUsers = await Promise.all(groupList.map(async group => {
+                    const users = await fetchGroupUsers(group.groupName);
+                    return { ...group, users };
+                }))
+                setUserGroupList(groupsWithUsers);
                 setIsLoading(false);
             } else {
                 setUserGroupList([]);
@@ -40,6 +44,28 @@ const Groups = () => {
             setError(error.message);
             setUserGroupList([]);
             setIsLoading(false);
+        }
+    };
+
+    const fetchGroupUsers = async (groupName) => {
+        try {
+            const response = await fetch(`https://groupfitnessprod.azurewebsites.net/group/getGroupUsers?groupName=${groupName}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error fetching users for group: ${groupName}: ${response.statusText}`);
+            }
+
+            const users = await response.json();
+            return users; 
+        } catch (error) {
+            console.error('Error:', error);
+            return [];
         }
     };
 
@@ -128,6 +154,7 @@ const Groups = () => {
                                 <Group
                                     key={index} // Using index as the key
                                     groupName={group.groupName}
+                                    users={group.users}
                                 />
                             ))
                         ) : !isLoading && (
