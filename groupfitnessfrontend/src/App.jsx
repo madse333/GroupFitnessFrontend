@@ -6,6 +6,7 @@ import ProtectedPage from './pages/ProtectedPage';
 import Home from './pages/Home';
 import Signout from './pages/Signout';
 import Groups from './pages/Groups';
+import Profile from './pages/Profile';
 import NavigationBar from './components/NavigationBar';
 
 const App = () => {
@@ -47,6 +48,9 @@ const App = () => {
                 </Route>
                 <Route exact path="/groups">
                     {isLoggedIn ? <Groups /> : <Redirect to="/login" />}
+                </Route>
+                <Route exact path="/profile">
+                    {isLoggedIn ? <Profile /> : <Redirect to="/login"/>}
                 </Route>
             </Switch>
         </Router>
