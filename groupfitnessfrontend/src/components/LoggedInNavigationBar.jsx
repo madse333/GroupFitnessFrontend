@@ -32,9 +32,11 @@ const NavigationBar = ({ handleLogout }) => {
                 <Link to="/groups" className="menu-item">
                     Groups
                 </Link>
-
                 <Link to="/" className="menu-item">
                     Home
+                </Link>
+                <Link to="/profile" className="menu-item">
+                    My Profile
                 </Link>
 
                 <div className="dropdown-container" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
@@ -43,7 +45,7 @@ const NavigationBar = ({ handleLogout }) => {
                         <div className="dropdown-content">
                             <Link to="/signout">Sign Out</Link>
                             {profilePicture != null ? (
-                                <img src={`data:image/jpeg;base64,${profilePicture}`}></img>
+                                <img src={`data:image/jpeg;base64,${profilePicture}`} className="profile_picture"></img>
                                 ) : (<p>profilBillede</p>)};
                         </div>
                     )}

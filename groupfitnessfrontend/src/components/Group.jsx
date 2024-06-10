@@ -13,13 +13,23 @@ const Group = ({ groupName, users }) => {
                                 <div className="group-title">
                                     {groupName}
                                 </div>
-                                
-                                {users.map(user => (
-                                    <div key={user.id} className="member">
-                                        <img src={`data:image/jpeg;base64,${user.profilePicture.result.base64}`} alt={user.username} className="profile-picture" />
-                                        <p>{user.username}</p>
+                                <div className="member-row">
+                                    {users.map(user => (
+                                        <div key={user.id} className="member">
+                                            {user.profilePicture?.result?.base64 ? (
+                                                <img src={`data:image/jpeg;base64,${user.profilePicture.result.base64}`} alt={user.username} className="profile-picture" />
+                                            ) : (
+                                                <img src="./public/User_Profile.png" alt={user.username} className="profile-stock" />
+                                            )}
+                                        </div>
+                                    ))}
+                                    <div className="member">
+                                        <img src="./public/User_Profile.png" alt="test" className="profile-stock" />
                                     </div>
-                                ))}
+                                    <div className="member">
+                                        <img src="./public/User_Profile.png" alt="test" className="profile-stock" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
