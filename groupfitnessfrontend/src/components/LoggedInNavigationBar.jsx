@@ -46,7 +46,7 @@ const NavigationBar = ({ handleLogout }) => {
                             <Link to="/signout">Sign Out</Link>
                             {profilePicture != null ? (
                                 <img src={`data:image/jpeg;base64,${profilePicture}`} className="profile_picture"></img>
-                                ) : (<p>profilBillede</p>)};
+                                ) : (<p>profilBillede</p>)}
                         </div>
                     )}
                 </div>

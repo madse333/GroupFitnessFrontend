@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../components/NavigationBar';
 import LoggedInNavBar from '../components/LoggedInNavigationBar';
+import "../css/Profile.scss";
 
 
 const Profile = () => {
@@ -27,7 +28,7 @@ const Profile = () => {
                     <div className="col-12 col-sm-12">
                         {profilePicture != null ? (
                             <img src={`data:image/jpeg;base64,${profilePicture}`} className="profile_picture"></img>
-                        ) : (<p>profilBillede</p>)};
+                        ) : (<p>profilBillede</p>)}
                     </div>
                 </div>
                 <div className="row">
