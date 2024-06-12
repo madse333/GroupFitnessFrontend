@@ -6,7 +6,7 @@ const Signout = ({ handleLogout }) => {
 
     useEffect(() => {
         handleLogout();
-        history.push('/login');
+        history.push('/');
     }, [handleLogout, history]);
 
     return (

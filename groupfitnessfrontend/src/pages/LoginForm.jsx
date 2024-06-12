@@ -1,17 +1,20 @@
 // LoginForm.js
 import { useState } from 'react';
 import { login } from '../AuthService';
+import { useHistory } from 'react-router-dom';
 import "../css/LoginForm.scss";
 
 const LoginForm = ({ onLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const history = useHistory();
 
     const handleLogin = async (event) => {
         event.preventDefault();
         try {
             const token = await login(username, password);
             onLogin(token);
+            history.push('/');
         } catch (error) {
             // Handle login error
         }

@@ -13,6 +13,7 @@ export const login = async (username, password) => {
         }
 
         const data = await response.json();
+        sessionStorage.setItem('token', data.token);
         return data.token;
     } catch (error) {
         console.error('Error logging in:', error);
@@ -44,7 +45,8 @@ export const register = async (firstName, lastName, username, email, password) =
 
 export const signOut = () => {
     try {
-        localStorage.removeItem('token');
+        sessionStorage.clear();
+        localStorage.clear();
         window.location.href = '/login';
     } catch (error) {
         console.error('Error signing out:', error);

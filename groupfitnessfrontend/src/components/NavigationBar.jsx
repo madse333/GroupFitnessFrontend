@@ -21,7 +21,12 @@ const NavigationBar = () => {
 
             <div className="dropdown-container" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                 <FontAwesomeIcon icon={faCircleUser} className='faCircleUserDropDown' />
-                {showDropdown && (<div className="dropdown-content"> <Link to="/login">Login</Link> <Link to="/register">Sign Up</Link> </div>)}
+                {showDropdown && (
+                    <div className="dropdown-content">
+                        <Link to="/login">Login</Link>
+                        <Link to="/register">Sign Up</Link>
+                    </div>
+                )}
             </div>
         </div>
     );

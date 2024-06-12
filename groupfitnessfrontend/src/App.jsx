@@ -7,36 +7,34 @@ import Home from './pages/Home';
 import Signout from './pages/Signout';
 import Groups from './pages/Groups';
 import Profile from './pages/Profile';
-import NavigationBar from './components/NavigationBar';
 
 const App = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(!localStorage.getItem('token'));
+    const [isLoggedIn, setIsLoggedIn] = useState(!sessionStorage.getItem('token'));
 
     const handleLogin = (token) => {
-        localStorage.setItem('token', token);
+        sessionStorage.setItem('token', token);
         setIsLoggedIn(true);
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeitem('userData');
+        sessionStorage.clear();
+        localStorage.clear();
         setIsLoggedIn(false);
     };
 
     const handleRegister = (token) => {
-        localStorage.setItem('token', token);
+        sessionStorage.setItem('token', token);
         setIsLoggedIn(true);
     };
 
     return (
         <Router>
-            {isLoggedIn && <NavigationBar handleLogout={handleLogout} />}
             <Switch>
                 <Route exact path="/register">
-                    {isLoggedIn ? <Redirect to="/" /> : <RegisterForm onRegister={handleRegister} />}
+                    {<RegisterForm onRegister={handleRegister} />}
                 </Route>
                 <Route exact path="/login">
-                    {isLoggedIn ? <Redirect to="/" /> : <LoginForm onLogin={handleLogin} />}
+                    {<LoginForm onLogin={handleLogin} />}
                 </Route>
                 <Route exact path="/protected">
                     {isLoggedIn ? <ProtectedPage /> : <Redirect to="/login" />}
@@ -45,7 +43,7 @@ const App = () => {
                     <Signout handleLogout={handleLogout} />
                 </Route>
                 <Route exact path="/">
-                    {isLoggedIn ? <Home /> : <Redirect to="/login" />}
+                    <Home />
                 </Route>
                 <Route exact path="/groups">
                     {isLoggedIn ? <Groups /> : <Redirect to="/login" />}

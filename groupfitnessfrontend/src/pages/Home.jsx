@@ -16,9 +16,16 @@ const Home = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
+                const token = sessionStorage.getItem('token');
+                if (!token) {
+                    setIsLoading(false);
+                    return;
+                }
+
                 const response = await fetch('https://groupfitnessprod.azurewebsites.net/user/getuser/getuser', {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                        // Authorization: `Bearer ${localStorage.getItem('token')}`
+                        Authorization: `Bearer ${token}`
                     }
                 });
 
@@ -41,8 +48,10 @@ const Home = () => {
     }, []);
 
     useEffect(() => {
-        fetchImagesForSelectedDate();
-    }, [selectedDate]);
+        if (user) { 
+            fetchImagesForSelectedDate();
+        }
+    }, [selectedDate, user]);
 
     const fetchImagesForSelectedDate = async () => {
         if (!selectedDate) {
@@ -55,7 +64,8 @@ const Home = () => {
         try {
             const response = await fetch(`https://groupfitnessprod.azurewebsites.net/user/getuserimages/getuserimages?date=${formattedDate}`, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    //   Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${sessionStorage.getItem('token')}`
                 }
             });
 
@@ -90,7 +100,7 @@ const Home = () => {
             const response = await fetch('https://groupfitnessprod.azurewebsites.net/user/uploadimage/uploadimage', {
                 method: 'POST',
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${sessionStorage.getItem('token')}`
                 },
                 body: data
             });
@@ -113,7 +123,7 @@ const Home = () => {
             const response = await fetch(`https://groupfitnessprod.azurewebsites.net/user/removeimage/removeimage?imageName=${imageName}`, {
                 method: 'DELETE',
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${sessionStorage.getItem('token')}`
                 }
             });
 
@@ -141,7 +151,7 @@ const Home = () => {
         return <p>Loading...</p>;
     }
 
-    if (error) {
+    if (!user) {
         return (
             <>
                 <Navbar />

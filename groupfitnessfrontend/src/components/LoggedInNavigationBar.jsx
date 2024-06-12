@@ -10,7 +10,7 @@ const NavigationBar = ({ handleLogout }) => {
 
     const handleMouseEnter = () => {
         setShowDropdown(true);
-        const userData = JSON.parse(localStorage.getItem('userData'));
+        const userData = JSON.parse(sessionStorage.getItem('userData'));
         console.log(userData);
 
         // Check if userData and profilePicture exist

@@ -115,7 +115,7 @@ const Groups = () => {
     if (error) {
         return (
             <>
-                <Navbar />
+                <LoggedInNavBar />
                 <div className="Home-container">
                     <h1>Groups</h1>
                     <p>Error: {error}</p>
