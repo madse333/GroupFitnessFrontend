@@ -35,7 +35,7 @@ const Home = () => {
 
                 const userData = await response.json();
                 setUser(userData);
-                localStorage.setItem('userData', JSON.stringify(userData));
+                sessionStorage.setItem('userData', JSON.stringify(userData));
 
             } catch (error) {
                 setError(error.message);

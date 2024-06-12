@@ -15,9 +15,15 @@ const Groups = () => {
 
     const fetchGroups = async () => {
         try {
+            const token = sessionStorage.getItem('token');
+            if (!token) {
+                setIsLoading(false);
+                return;
+            }
+
             const response = await fetch('https://groupfitnessprod.azurewebsites.net/group/getgroups', {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${token}`
                 }
             });
 
@@ -49,11 +55,17 @@ const Groups = () => {
 
     const fetchGroupUsers = async (groupName) => {
         try {
+            const token = sessionStorage.getItem('token');
+            if (!token) {
+                setIsLoading(false);
+                return;
+            }
+
             const response = await fetch(`https://groupfitnessprod.azurewebsites.net/group/getGroupUsers?groupName=${groupName}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    'Authorization': `Bearer ${token}`
                 }
             });
 

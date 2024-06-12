@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
 import "../css/LoggedInNavigationBar.css";
 // eslint-disable-next-line react/prop-types
-const NavigationBar = ({ handleLogout }) => {
+const NavigationBar = () => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [profilePicture, setProfilePicture] = useState(null);
 

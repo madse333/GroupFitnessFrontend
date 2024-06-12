@@ -11,7 +11,7 @@ const Profile = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const userData = JSON.parse(localStorage.getItem('userData'));
+        const userData = JSON.parse(sessionStorage.getItem('userData'));
 
         if (userData && userData.profilePicture && userData.profilePicture.result) {
             const base64Image = userData.profilePicture.result.base64;
