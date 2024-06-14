@@ -5,6 +5,7 @@ import FileUpload from '../components/UploadImage';
 import Image from '../components/Image';
 import CalendarComponent from '../components/CalendarComponent';
 import '../css/Home.scss';
+import "../css/Spinner.scss";
 
 const Home = () => {
     const [user, setUser] = useState(null);
@@ -148,7 +149,10 @@ const Home = () => {
     };
 
     if (isLoading) {
-        return <p>Loading...</p>;
+        return (<div className="spinner-container">
+                <div className="spinner"></div>
+                <p>Loading...</p>
+                </div>)
     }
 
     if (!user) {

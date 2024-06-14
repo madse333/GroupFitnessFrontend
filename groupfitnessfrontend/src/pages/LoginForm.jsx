@@ -3,19 +3,23 @@ import { useState } from 'react';
 import { login } from '../AuthService';
 import { useHistory } from 'react-router-dom';
 import "../css/LoginForm.scss";
+import "../css/Spinner.scss";
 
 const LoginForm = ({ onLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();
 
     const handleLogin = async (event) => {
         event.preventDefault();
         try {
             const token = await login(username, password);
+            setIsLoading(true);
             onLogin(token);
             history.push('/');
         } catch (error) {
+            setIsLoading(false);
             // Handle login error
         }
     };
@@ -84,12 +88,19 @@ const LoginForm = ({ onLogin }) => {
                             </div>
                         </div>
                         <div className="col-12 col-sm-3 login-button-col">
-                            <button type="submit" className="login-button">
-                                <div className="login-rectangle">
-                                    <div className="rectangle-2"></div>
-                                    <div className="login">Login</div>
+                            {isLoading && (
+                                <div className="spinner-container">
+                                    <div className="spinner"></div>
+                                    <p>Loading...</p>
                                 </div>
-                            </button>
+                            )} : {!isLoading && (
+                                <button type="submit" className="login-button">
+                                    <div className="login-rectangle">
+                                        <div className="rectangle-2"></div>
+                                        <div className="login">Login</div>
+                                    </div>
+                                </button>
+                            )}
                         </div>
                     </form>
                 </div>
