@@ -1,4 +1,39 @@
 .info-container {
     display: flex;
     flex-direction: column;
+
+    .rectangle-1 {
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 15px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .non-editable {
+        background: #e9ecef;
+        border-radius: 15px;
+        padding: 10px;
+        font-family: "PtSans-Bold", sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        color: #333;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+
+    .email {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        font-family: "PtSans-Bold", sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        background: #f9f9f9;
+        box-sizing: border-box;
+        margin-top: 5px;
+    }
 }

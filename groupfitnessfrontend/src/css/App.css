@@ -1,3 +1,6 @@
 .LoginPage {
     background-color: #191718;
 }
+.no-select{
+    user-select: none;
+}
