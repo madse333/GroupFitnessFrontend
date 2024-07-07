@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import Navbar from '../components/NavigationBar';
 import LoggedInNavBar from '../components/LoggedInNavigationBar';
 import GroupForm from '../components/modals/GroupForm';
 import Group from '../components/Group';
@@ -17,6 +16,7 @@ const Groups = () => {
         try {
             const token = sessionStorage.getItem('token');
             if (!token) {
+                console.error('No token found in sessionStorage');
                 setIsLoading(false);
                 return;
             }
@@ -34,24 +34,28 @@ const Groups = () => {
             const groupList = await response.json();
             console.log('Fetched groups:', groupList);
 
-            if (Array.isArray(groupList)) {
-                const groupsWithUsers = await Promise.all(groupList.map(async group => {
-                    const users = await fetchGroupUsers(group.groupName);
-                    return { ...group, users };
-                }))
-                setUserGroupList(groupsWithUsers);
-                setIsLoading(false);
-            } else {
-                setUserGroupList([]);
-                setIsLoading(false);
-            }
+            // Filter out null or undefined groups
+            const validGroups = groupList.filter(group => group !== null && group !== undefined);
 
+            const groupsWithUsers = await Promise.all(validGroups.map(async group => {
+                const users = await fetchGroupUsers(group.groupName);
+                console.log(`Fetched users for group ${group.groupName}:`, users);
+                return { ...group, users: users || [] };
+            }));
+
+            console.log('Groups with users before setting state:', groupsWithUsers);
+            setUserGroupList(groupsWithUsers);
+            console.log('State update called with:', groupsWithUsers);
+
+            setIsLoading(false);
         } catch (error) {
+            console.error('Error in fetchGroups:', error);
             setError(error.message);
             setUserGroupList([]);
             setIsLoading(false);
         }
     };
+
 
     const fetchGroupUsers = async (groupName) => {
         try {
@@ -136,6 +140,8 @@ const Groups = () => {
         );
     }
 
+    console.log('Rendering with userGroupList:', userGroupList); // Debugging
+
     return (
         <>
             <LoggedInNavBar />
@@ -166,11 +172,11 @@ const Groups = () => {
                                 <Group
                                     key={index} // Using index as the key
                                     groupName={group.groupName}
-                                    users={group.users}
+                                    users={group.users || []}
                                 />
                             ))
                         ) : !isLoading && (
-                                <p>No groups found for this user.</p>
+                            <p>No groups found for this user.</p>
                         )}
                     </div>
                 </div>

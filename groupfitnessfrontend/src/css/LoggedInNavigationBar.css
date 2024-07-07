@@ -64,6 +64,8 @@
     white-space: nowrap;
     right: 0;
     left: -50px;
+    justify-content: center;
+    align-items: center;
 
 }
 
@@ -87,7 +89,9 @@ li.active a {
     color: #ffcc00;
 }
 
-.profile_picture{
-    width: 100px;
+.profile_picture {
+    width: 75px !important;
+    height: 75px !important;
     border-radius: 50%;
+    object-fit: cover;
 }
